@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.setup-container {
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-gap: 16px;
+  width: 70%;
+  margin: 0 auto;
+}
+.setup-container .setup {
+  padding: 16px;
+  border-radius: 5px;
+  border: 2px solid #aaa;
+  background-color: #ccc;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+.setup-header {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+  text-align: center;
+}
+.setup-sidebar {
+  grid-column: 1 / span 1;
+  width: 250px;
+}
+.setup-step {
+  grid-column: 2 / span 1;
+}
