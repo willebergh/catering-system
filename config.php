@@ -2,4 +2,4 @@
   $servername = "localhost";
   $username = "root";
   $password = "";
-  $dbname = "catering_system2";
+  $dbname = "catering_system";
