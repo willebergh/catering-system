@@ -4,9 +4,13 @@
   box-sizing: border-box;
 }
 
+.hide {
+  display: none;
+}
+
 .setup-container {
   display: grid;
-  grid-template-columns: 250px auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 16px;
   width: 70%;
   margin: 0 auto;
@@ -19,14 +23,13 @@
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 .setup-header {
-  grid-column: 1 / span 2;
+  grid-column: 1 / span 4;
   grid-row: 1 / span 1;
   text-align: center;
 }
 .setup-sidebar {
   grid-column: 1 / span 1;
-  width: 250px;
 }
 .setup-step {
-  grid-column: 2 / span 1;
+  grid-column: 2 / span 2;
 }
