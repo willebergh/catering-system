@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -13,9 +12,8 @@
     <script src="./assets/js/setup.js"></script>
   </head>
   <body onload="resetProgress()">
-    <div id="php"></div>
 
-    <div class="container" style="margin-top: 10%; max-width: 600px;">
+    <div class="container" style="margin-top: 64px; max-width: 600px;">
 
       <div class="row align-items-center">
         <div class="col border rounded p-3 m-2">
@@ -44,20 +42,24 @@
           </div>
 
           <div id="step2" class="container">
+            <div id="checkDatabaseCredsResults"></div>
             <h4>Step 2</h4>
             <p>Please provide server credentials</p>
-            <form style="width: 50%;margin:0 auto;" class="setup-form" action="./assets/script/setup-script.php" method="post">
+            <form style="width: 50%;margin:0 auto;" class="setup-form" method="post">
               <div class="form-group">
-                <input class="form-control" type="text" name="servername" placeholder="Servername">
+                <input id="dbServername" class="form-control" type="text" placeholder="Servername">
               </div>
               <div class="form-group">
-                <input class="form-control" type="text" name="username" placeholder="Username">
+                <input id="dbUsername" class="form-control" type="text" placeholder="Username">
               </div>
               <div class="form-group">
-                <input class="form-control" type="text" name="password" placeholder="Password">
+                <input id="dbPassword" class="form-control" type="password" placeholder="Password">
+              </div>
+              <div style="position:absolute;bottom:16px;right:16px;">
+                <input class="btn btn-primary" type="button" onclick="checkDatabaseCreds()" value="Submit">
+                <input id="step2NextBtn" class="btn btn-secondary" type="button" onclick="showStep3()" value="Next" disabled>
               </div>
             </form>
-            <button class="btn btn-primary" style="position:absolute;bottom:16px;right:16px;" type="button" name="button" onclick="showStep3()">Next</button>
           </div>
 
           <div id="step3" class="container">
@@ -83,8 +85,8 @@
               <div class="form-group">
                 <input class="form-control" type="password" name="password_repeat" placeholder="Repeat password">
               </div>
+              <button class="btn btn-primary" style="position:absolute;bottom:16px;right:16px;" type="button" name="button" onclick="showStep5()">Next</button>
             </form>
-            <button class="btn btn-primary" style="position:absolute;bottom:16px;right:16px;" type="button" name="button" onclick="showStep5()">Next</button>
           </div>
 
           <div id="step5" class="container">

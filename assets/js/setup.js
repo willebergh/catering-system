@@ -48,12 +48,20 @@ function showStep5() {
   progressBar.style.width = "100%";
 }
 
-function showStep1_1() {
-  var showStep1 = $("#showStep1").val();
-  $.post("submit.php", { showStep1: showStep1 },
-  function(data) {
- $('#php').html(data);
-  });
 
-  console.log("works");
+function checkDatabaseCreds() {
+    var dbServername = $("#dbServername").val();
+    var dbUsername = $("#dbUsername").val();
+    var dbPassword = $("#dbPassword").val();
+
+    $.post("./assets/script/setup.php", { dbServername: dbServername, dbUsername: dbUsername, dbPassword: dbPassword },
+    function(data) {
+	     if (data == "ok") {
+          $("#step2NextBtn").removeClass("btn-secondary");
+          $("#step2NextBtn").addClass("btn-primary");
+          document.getElementById("step2NextBtn").removeAttribute("disabled");
+       }  else {
+         $('#checkDatabaseCredsResults').html(data);
+       }
+    });
 }
