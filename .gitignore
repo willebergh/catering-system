@@ -1,0 +1,6 @@
+#
+# .gitignore
+#
+
+# Ignore script generated config file.
+  assets/includes/config.php
