@@ -42,7 +42,8 @@
           </div>
 
           <div id="step2" class="container">
-            <div id="checkDatabaseCredsResults"></div>
+            <div id="step2ResultGreen" class="alert alert-success d-none" role="alert"></div>
+            <div id="step2ResultRed" class="alert alert-danger d-none" role="alert"></div>
             <h4>Step 2</h4>
             <p>Please provide server credentials</p>
             <form style="width: 50%;margin:0 auto;" class="setup-form" method="post">
@@ -56,20 +57,41 @@
                 <input id="dbPassword" class="form-control" type="password" placeholder="Password">
               </div>
               <div style="position:absolute;bottom:16px;right:16px;">
-                <input class="btn btn-primary" type="button" onclick="checkDatabaseCreds()" value="Submit">
-                <input id="step2NextBtn" class="btn btn-secondary" type="button" onclick="showStep3()" value="Next" disabled>
+                <input id="step2BtnConnect" class="btn btn-primary" type="button" onclick="checkDatabaseCreds()" value="Connect">
+                <button id="step2BtnConnectLoading" class="btn btn-primary d-none" disabled>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+                </button>
+                <input id="step2BtnNext" class="btn btn-secondary" type="button" onclick="showStep3()" value="Next" disabled>
               </div>
             </form>
           </div>
 
           <div id="step3" class="container">
+            <div id="step3ResultGreen" class="alert alert-success d-none" role="alert"></div>
+            <div id="step3ResultRed" class="alert alert-danger d-none" role="alert"></div>
             <h4>Step 3</h4>
             <p>We are now going to create a database called catering_system</br>
             and in that database, we are going to create two tables called, orders and users</p>
-            <button class="btn btn-primary" style="position:absolute;bottom:16px;right:16px;" type="button" name="button" onclick="showStep4()">Next</button>
+            <div class="container">
+              <ul>
+                <li>Create database</li>
+                <li>Create table orders</li>
+                <li>Create table users</li>
+              </ul>
+            </div>
+            <div style="position:absolute;bottom:16px;right:16px;">
+              <button id="step3BtnCreate" class="btn btn-primary" type="button" name="button" onclick="createDatabaseAndTables()">Create</button>
+              <button id="step3BtnCreateLoading" class="btn btn-primary d-none" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...
+              </button>
+              <button id="step3BtnNext" class="btn btn-secondary" type="button" name="button" onclick="showStep4()" disabled>Next</button>
+            </div>
           </div>
 
           <div id="step4" class="container">
+            <div id="step4ResultGreen" class="alert alert-success d-none" role="alert"></div>
+            <div id="step4ResultRed" class="alert alert-danger d-none" role="alert"></div>
             <h4>Step 4</h4>
             <p>Please register an admin account</p>
             <form style="width: 50%;margin:0 auto;" action="index.html" method="post">

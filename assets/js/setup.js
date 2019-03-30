@@ -50,18 +50,83 @@ function showStep5() {
 
 
 function checkDatabaseCreds() {
+    var step = "step2";
+
     var dbServername = $("#dbServername").val();
     var dbUsername = $("#dbUsername").val();
     var dbPassword = $("#dbPassword").val();
 
-    $.post("./assets/script/setup.php", { dbServername: dbServername, dbUsername: dbUsername, dbPassword: dbPassword },
+    var resultGreen = $('#step2ResultGreen');
+    var resultRed = $('#step2ResultRed');
+
+    var btnNext = $("#step2BtnNext");
+    var btnConnect = $("#step2BtnConnect");
+    var btnConnectLoading = $("#step2BtnConnectLoading");
+
+    btnConnect.toggleClass("d-none");
+    btnConnectLoading.toggleClass("d-none")
+
+    $.post("./assets/script/setup.php", { step: step, dbServername: dbServername, dbUsername: dbUsername, dbPassword: dbPassword },
     function(data) {
 	     if (data == "ok") {
-          $("#step2NextBtn").removeClass("btn-secondary");
-          $("#step2NextBtn").addClass("btn-primary");
-          document.getElementById("step2NextBtn").removeAttribute("disabled");
-       }  else {
-         $('#checkDatabaseCredsResults').html(data);
+         resultRed.addClass("d-none")
+         resultGreen.removeClass("d-none");
+         resultGreen.html("Connected");
+
+         btnConnect.toggleClass("d-none");
+         btnConnectLoading.toggleClass("d-none");
+
+         btnNext.removeClass("btn-secondary");
+         btnNext.addClass("btn-primary");
+         document.getElementById("step2BtnNext").removeAttribute("disabled");
+
+       } else {
+         resultGreen.addClass("d-none");
+         resultRed.removeClass("d-none");
+         resultRed.html(data);
+
+         btnConnect.toggleClass("d-none");
+         btnConnectLoading.toggleClass("d-none");
        }
     });
+}
+
+
+function createDatabaseAndTables() {
+  var step = "step3";
+  var createDB = "true";
+
+  var resultGreen = $('#step3ResultGreen');
+  var resultRed = $('#step3ResultRed');
+
+  var btnNext = $("#step3BtnNext");
+  var btnCreate = $("#step3BtnCreate");
+  var btnCreateLoading = $("#step3BtnCreateLoading");
+
+  btnCreate.toggleClass("d-none");
+  btnCreateLoading.toggleClass("d-none");
+
+  $.post("./assets/script/setup.php", {step: step, createDB: createDB},
+  function(data) {
+    if (data == "dbCreated") {
+      resultRed.addClass("d-none")
+      resultGreen.removeClass("d-none");
+      resultGreen.html("Created");
+
+      btnCreate.toggleClass("d-none");
+      btnCreateLoading.toggleClass("d-none");
+
+      btnNext.removeClass("btn-secondary");
+      btnNext.addClass("btn-primary");
+      document.getElementById("step3BtnNext").removeAttribute("disabled");
+
+    } else {
+      resultGreen.addClass("d-none");
+      resultRed.removeClass("d-none");
+      resultRed.html(data);
+
+      btnCreate.toggleClass("d-none");
+      btnCreateLoading.toggleClass("d-none");
+    }
+  });
 }
